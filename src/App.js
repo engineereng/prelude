@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/analytics';
+import LandingPage from './pages/LandingPage.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAMtcfzOanNakfh0O6h1vUkmM8c6g9-v4s",
@@ -32,22 +32,7 @@ if (window.location.hostname === 'localhost') {
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LandingPage />
   );
 }
 
