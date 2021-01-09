@@ -2,7 +2,7 @@
 The opening to your new relationship. A music dating app made for nwHacks 2021.
 
 ## Setting up
-Clone this repo
+Clone this repo, then navigate to the "prelude" directory and run these two commands:
 `npm install`
 
 `npm install firebase-tools -g`
