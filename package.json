@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "yarn build && firebase emulators:start",
-    "start-firebase": "firebase emulators:start --only firestore,functions",
+    "start-firebase": "firebase emulators:start --only firestore",
     "start-basic": "react-scripts start",
     "deploy": "firebase deploy",
     "deploy-functions": "firebase deploy --only functions",

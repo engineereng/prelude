@@ -1,6 +1,9 @@
 # 🎻 prelude
 The opening to your new relationship. A music dating app made for nwHacks 2021.
 
+`npm install firebase-tools -g`
+`firebase login`
+
 ## Available Scripts
 ### `yarn start`
 Builds app, then opens Firebase emulator, emulating both hosting and Firestore. Emulator control panel can be accessed at `localhost:4000`, hosted webpage can be accessed at `localhost:5000`, and Firestore control panel can be accessed at `localhost:8080`. This will not automatically rebuild the package if changes are made.
