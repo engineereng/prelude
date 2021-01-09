@@ -4,7 +4,7 @@ import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/analytics';
-import LandingPage from './pages/LandingPage.js';
+import LandingPage from './pages/LandingPage/LandingPage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAMtcfzOanNakfh0O6h1vUkmM8c6g9-v4s",
