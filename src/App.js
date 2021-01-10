@@ -22,7 +22,7 @@ if (!firebase.apps.length) {
 };
 
 let db = firebase.firestore();
-console.log(db);
+let functions = firebase.functions();
 
 // Deal with emulators
 if (window.location.hostname === 'localhost') {
