@@ -51,13 +51,13 @@ function App() {
 
   return (
     <>
-      
+
       <Route exact path="/" component= {LandingPage} />
       <Route path="/loggedin">
          <LoggedIn code={query.get("code")} functions={functions} />
       </Route>
       <Route path="/index">
-       <MainPage data={query.get("code")} />
+       <MainPage data={query.get("code")} functions={functions} />
       </Route>
     </>
   );

@@ -1,15 +1,17 @@
 import React from "react";
 import "./ProfileInfo.css";
 
-const profileInfo = () => {
+const profileInfo = (props) => {
   return (
     <div id="ProfileInfoPanel">
-      <div id="ProfilePhoto" />
+      <div id="ProfilePhoto">
+        <img id="ProfilePhoto2" alt="profile photo" src={props.picture_url} />
+      </div>
       <div className="text">
         <div style={{ marginTop: "68px" }}>
           <label id="name">name</label>
 
-          <input type="text" className="line" id="name-line" />
+          <input type="text" className="line" id="name-line" defaultValue={props.display_name} />
         </div>
         <div style={{ marginTop: "24px" }}>
           <label id="age">age</label>

@@ -4,6 +4,24 @@ const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 admin.initializeApp();
 
+exports.getProfile = functions.https.onCall((data, context) => {
+  console.log(data.access_token);
+  var http = new XMLHttpRequest();
+  var url = 'https://api.spotify.com/v1/me';
+  http.open('GET', url, false);
+  http.setRequestHeader('Authorization', 'Bearer '+data.access_token);
+  http.setRequestHeader('Accept', 'application/json');
+  http.setRequestHeader('Content-Type', 'application/json');
+  http.send();
+  if(http.status >= 200 && http.status < 300) {
+    console.log(http.responseText);
+    return(JSON.parse(http.responseText));
+  }
+
+  console.log(http.status);
+  throw new functions.https.HttpsError('invalid-argument', 'Function call failed.');
+})
+
 // Obtains Spotify Access Token using either refresh token or authorization code
 // data should contain refresh_token or authorization_code
 exports.obtainSpotifyToken = functions.https.onCall((data, context) => {
@@ -20,6 +38,7 @@ exports.obtainSpotifyToken = functions.https.onCall((data, context) => {
     http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     http.send(body);
     if(http.status >= 200 && http.status < 300) {
+      console.log(http.responseText);
       return(JSON.parse(http.responseText));
     } else {
       throw new functions.https.HttpsError('failed-return', 'Function returned with status ' + http.status);
