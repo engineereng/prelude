@@ -5,6 +5,9 @@ import eighthNote from '../../assets/eighth-note.png';
 import doubleEighthNote from '../../assets/double-eighth-note.png';
 import logo from '../../assets/prelude-logo.png';
 import spinner from '../../assets/Spinner-1s-200px.gif';
+import  {
+  Redirect,
+} from 'react-router-dom';
 
 // import firebase from 'firebase/app';
 // import 'firebase/functions';
@@ -55,23 +58,13 @@ class LandingPage extends Component {
 }
 
 class LoggedIn extends Component {
-  constructor(props) {
-    super(props);
-    this.handleOk = this.handleOk.bind(this);
-  }
-
-
   componentDidMount() {
     var something = this.props.functions.httpsCallable("obtainSpotifyToken");
     something({authorization_code: this.props.code})
         //.then(res => {console.log(res)});
-        .then()
-  }
-
-  handleOk() {
-    this.setState({
-
-    })
+        .then(res=>{this.props.datafunc(res);
+          console.log(res);
+          window.location.assign('http://localhost:3000/index?code=' + res.data.access_token)});
   }
 
   render() {

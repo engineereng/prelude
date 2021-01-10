@@ -5,9 +5,12 @@ import "./MainPage.css";
 
 
 class MainPage extends Component {
+    
     render() {
+        console.log("MAIN PAGE SEES: " + this.props.data);
         return (
             <div>
+                
             <SideBar />
             <ProfileInfo />
             </div>

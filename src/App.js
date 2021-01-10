@@ -1,13 +1,17 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/analytics';
 import 'firebase/functions';
 import {LandingPage, LoggedIn} from './pages/LandingPage/LandingPage';
+import MainPage from './pages/MainPage/MainPage';
+import NotLoggedIn from './pages/NotLoggedIn/NotLoggedIn';
 
 import  {
+  Redirect,
  // BrowserRouter as Router,
+  Switch,
   Route,
   useLocation
 } from 'react-router-dom';
@@ -47,9 +51,13 @@ function App() {
 
   return (
     <>
-      <Route path="/" component= {LandingPage} />
+      
+      <Route exact path="/" component= {LandingPage} />
       <Route path="/loggedin">
-        <LoggedIn code={query.get("code")} functions={functions}/>
+         <LoggedIn code={query.get("code")} functions={functions} />
+      </Route>
+      <Route path="/index">
+       <MainPage data={query.get("code")} />
       </Route>
     </>
   );
