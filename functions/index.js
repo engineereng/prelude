@@ -11,7 +11,7 @@ exports.obtainSpotifyToken = functions.https.onCall(async (data, context) => {
   if(data.authorization_code) {
     var http = new XMLHttpRequest();
     var url = 'https://accounts.spotify.com/api/token';
-    var body = 'grant_type=authorization_code&code='+data.authorization_code+'&redirect_uri=https://prelude-nwhacks.web.app/spotify-token-redirect-uri'
+    var body = 'grant_type=authorization_code&code='+data.authorization_code+'&redirect_uri=http://localhost:3000/loggedin'
     http.open('POST', url, false);
     http.setRequestHeader('Authorization', 'Basic '+base_64_header)
     http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
