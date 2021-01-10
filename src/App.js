@@ -30,10 +30,6 @@ if (!firebase.apps.length) {
 //let db = firebase.firestore();
 let functions = firebase.functions();
 
-//console.log("About to call function");
-functions.httpsCallable("obtainSpotifyToken");
-
-//console.log("function called");
 // Deal with emulators
 if (window.location.hostname === 'localhost') {
   console.log('Localhost detected, using emulators...')

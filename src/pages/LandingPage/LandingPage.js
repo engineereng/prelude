@@ -13,10 +13,10 @@ class LandingPage extends Component {
 
   signin() { // redirects the user to Spotify to authenticate
     var clientId = "579c4604e4ba46608b8f47b906ec23fc";
-    var uri = "http%3A%2F%2F"+ "localhost%3A3000" + "%2Floggedin";
+    var uri = "http%3A%2F%2F" + "localhost%3A3000" + "%2Floggedin";
     window.location.assign('https://accounts.spotify.com/authorize'+'?client_id=' + clientId + "&"
-     + 'response_type=code' + '&' 
-     + 'redirect_uri=' + uri + '&' 
+     + 'response_type=code' + '&'
+     + 'redirect_uri=' + uri + '&'
      // + 'state=' + state + '&'
      + 'scope=' + "user-top-read");
   }
@@ -55,13 +55,11 @@ class LoggedIn extends Component {
   }
 
   componentDidMount() {
-    console.log("Component mounted?");
     var something = this.props.functions.httpsCallable("obtainSpotifyToken");
-    console.log("Did something work?");
     something({authorization_code: this.props.code})
         .then(res => {console.log(res)});
   }
-  
+
   render() {
     return (
       <LandingPage />
