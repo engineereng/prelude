@@ -2,14 +2,3 @@ body {
   background-color: rgba(240, 238, 244, 1);
 }
 
-#ProfileInfoPanel {
-  position: absolute;
-  width: 514px;
-  height: 663px;
-  margin: auto;
- 
-  top: 15%;
-  left: 38%;
-  background: #ffffff;
-  border-radius: 30px;
-}

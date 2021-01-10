@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "./SideBar.css";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import UserIcon from "../../assets/user1.png";
-//import UserIcon from "../UserIcon";
 import CompassIcon from "../../assets/explore1.png";
 import RelationshipIcon from "../../assets/relationship1.png";
 import X from "../../assets/Vector.png";
+import logo from '../../assets/prelude-logo.png';
 
 class SideBar extends Component {
   state = {
@@ -38,7 +38,7 @@ class SideBar extends Component {
     if (!this.state.collapsed) {
       display = (
         <div className="ExpandedSideBar">
-          <div id="Logo">logo</div>
+          <img src={logo} id="Logo" />
           <div className="Separator" style={{ width: "292px" }} />
           <button id="Matches">matches</button>
           <button id="Explore">explore</button>

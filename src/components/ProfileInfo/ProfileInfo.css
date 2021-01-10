@@ -1,10 +1,106 @@
+@font-face {
+  font-family: Poppins;
+  src: url("../../fonts/Poppins-Regular.ttf");
+}
+
 #ProfileInfoPanel {
   position: absolute;
   width: 514px;
   height: 663px;
-  left: 551px;
-  top: 135px;
+  margin: auto;
 
+  top: 15%;
+  left: 38%;
   background: #ffffff;
   border-radius: 30px;
+}
+
+#ProfilePhoto {
+  /* position: absolute; */
+  width: 175px;
+  height: 175px;
+  /* top: 15%;
+  left: 33%; */
+  margin: 0 auto;
+  margin-top: 42px;
+  border-radius: 50%;
+  background: #c4c4c4;
+}
+
+.text {
+  font-family: Poppins;
+  font-size: 27px;
+  padding-left: 36px;
+}
+
+.button-text {
+  font-family: Poppins;
+  font-size: 35px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+#cancel {
+  margin-left: 66px;
+  background-color: rgba(247, 23, 53, 0.97);
+  border-radius: 5px;
+  width: 192px;
+  height: 66px;
+}
+
+#confirm {
+  background-color: #2bd2a5;
+  border-radius: 5px;
+  width: 192px;
+  height: 69px;
+}
+
+#name {
+  /* margin-top: 68px; */
+  display: inline-block;
+  float: left;
+  text-align: right;
+}
+
+/* #age {
+  padding-top: 24px;
+}
+
+#location {
+  padding-top: 26px;
+} */
+
+#sexual-orientation {
+  font-size: 20px;
+  /* padding-top: 9px; */
+} 
+
+.line {
+  width: 279px;
+  /* height: 27px; */
+  border-bottom: 1px solid #000000;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  /* margin-left: 129px; */
+  /* margin-top: -90px; */
+}
+
+#name-line {
+  margin-left: 39px;
+
+}
+
+#age-line {
+  margin-left: 66px;
+
+}
+
+#location-line {
+  margin-left: 9px;
+
+}
+
+#sexual-orientation-line {
+  margin-left: 10px;
 }

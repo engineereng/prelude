@@ -33,12 +33,9 @@
 
 #Logo {
   position: absolute;
-  width: 268px;
   height: 57px;
-  left: 10px;
+  left: 100px;
   top: 8px;
-
-  background: #c4c4c4;
   font-family: Poppins;
   font-weight: bold;
   font-size: 30px;
