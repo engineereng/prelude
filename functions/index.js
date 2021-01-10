@@ -18,7 +18,7 @@ exports.obtainSpotifyToken = functions.https.onCall(async (data, context) => {
     http.send(body);
     console.log(http.status);
     console.log(http.responseText);
-    return(http.responseText);
+    return(JSON.parse(http.responseText));
   }
 
   if(data.refresh_token) {
@@ -30,7 +30,7 @@ exports.obtainSpotifyToken = functions.https.onCall(async (data, context) => {
     http2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     http2.send(body2);
     console.log(http2.responseText);
-    return(http2.responseText);
+    return(JSON.parse(http2.responseText));
   }
 
   throw new functions.https.HttpsError('invalid-argument', 'Function was not called with authorization_code or refresh_token.');
