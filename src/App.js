@@ -1,11 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/analytics';
 import 'firebase/functions';
+import {LandingPage, LoggedIn} from './pages/LandingPage/LandingPage';
+
+import  {
+ // BrowserRouter as Router,
+  Route,
+  useLocation
+} from 'react-router-dom';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAMtcfzOanNakfh0O6h1vUkmM8c6g9-v4s",
@@ -22,7 +27,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 };
 
-let db = firebase.firestore();
+//let db = firebase.firestore();
 let functions = firebase.functions();
 
 // Deal with emulators
@@ -32,25 +37,24 @@ if (window.location.hostname === 'localhost') {
   firebase.functions().useEmulator("localhost", 5001);
 }
 
+function useQuery() {
+  console.log(useLocation().pathname);
+  return new URLSearchParams(useLocation().search);
+}
+
 function App() {
+  let query = useQuery();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Route path="/" component= {LandingPage} />
+      <Route path="/loggedin">
+        <LoggedIn code={query.get("code")} functions={functions}/>
+      </Route>
+    </>
   );
 }
+
+
 
 export default App;

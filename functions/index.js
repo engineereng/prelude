@@ -11,13 +11,14 @@ exports.obtainSpotifyToken = functions.https.onCall(async (data, context) => {
   if(data.authorization_code) {
     var http = new XMLHttpRequest();
     var url = 'https://accounts.spotify.com/api/token';
-    var body = 'grant_type=authorization_code&code='+data.authorization_code+'&redirect_uri=http://localhost:3000/loggedin'
+    var body = 'grant_type=authorization_code&code='+data.authorization_code+'&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Floggedin'
     http.open('POST', url, false);
     http.setRequestHeader('Authorization', 'Basic '+base_64_header)
-    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     http.send(body);
+    console.log(http.status);
     console.log(http.responseText);
-    return(http.responseText);
+    return(JSON.parse(http.responseText));
   }
 
   if(data.refresh_token) {
@@ -26,10 +27,10 @@ exports.obtainSpotifyToken = functions.https.onCall(async (data, context) => {
     var body2 = 'grant_type=refresh_token&refresh_token='+data.refresh_token;
     http2.open('POST', url2, false);
     http2.setRequestHeader('Authorization', 'Basic '+base_64_header);
-    http2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    http2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     http2.send(body2);
     console.log(http2.responseText);
-    return(http2.responseText);
+    return(JSON.parse(http2.responseText));
   }
 
   throw new functions.https.HttpsError('invalid-argument', 'Function was not called with authorization_code or refresh_token.');
