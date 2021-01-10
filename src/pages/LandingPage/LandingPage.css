@@ -1,5 +1,18 @@
+@font-face {
+    font-family: Poppins;
+    src: url("../../fonts/Poppins-Regular.ttf")
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../../fonts/Poppins-Bold.ttf");
+    font-weight: bold;
+}
+
+
 .App {
-    /* background-color: #D3FFF3; */
+    background-color: #D3FFF3;
+    z-index: -1;
 }
 
 
@@ -8,16 +21,14 @@
     left: 22px;
     top: 17px;
     width: 259px;
-    height: 124px;
+    height: 104px;
     border: 10px solid black;
-    
 }
 
 
 h1 {
    font-weight:bold;
    font-size: 75px;
-   
 }
 
 #left {
@@ -27,18 +38,82 @@ h1 {
     top: 207px;
     border: 0px solid #73AD21;
     text-align: left;
-    
+    font-family: Poppins;
 }
 
-button {
+.button {
     font-size: 27px;
+    position: absolute;
     text-align: center;
-    /* font-family: Poppins; */
+    font-family: Poppins;
     left: 898px;
     top: 300px;
-    
+    height: 85px;
+    width: 207.78px;
+    border-radius: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #A4A3F1;
+    z-index:1;
 }
 
-body {
-    background-color: #D3FFF3;
+#eighthNote {
+    position: absolute;
+    top: 99px;
+    left: 1265px;
+    height: 100px;
+    width: 100px;
+    z-index: 1;
+}
+
+#doubleEighthNote {
+    position: absolute;
+    top: 574px;
+    left: 810px;
+    height: 120px;
+    width: 120px;
+    z-index: 1;
+}
+
+#tagline {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#intro {
+    font-size: 25px;
+}
+
+#ellipse5 {
+    position: absolute;
+    left: -67px;
+    top: 595px;
+
+    background: rgba(151, 71, 255, 0.8);
+    filter: blur(250px);
+    z-index: 0;
+}
+
+#ellipse1 {
+    position: absolute;
+    width: 660px;
+    height: 651px;
+    left: 1018px;
+    top: -157px;
+
+    background: rgba(109, 46, 70, 0.8);
+    filter: blur(100px);
+    z-index: 0;
+}
+
+#ellipse2 {
+    position: absolute;
+    width: 865px;
+    height: 853px;
+    left: 797px;
+    top: 494px;
+
+    background: rgba(247, 23, 53, 0.8);
+    filter: blur(250px);
+    z-index: 0;
 }
