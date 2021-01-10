@@ -1,0 +1,66 @@
+.Separator {
+  position: absolute;
+  width: 134px;
+  height: 3px;
+  left: -4px;
+  top: 74px;
+  background: #c4c4c4;
+  opacity: 0.2;
+}
+
+.SideBar, .ExpandedSideBar {
+  position: absolute;
+  
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+}
+
+.SideBar {
+    width: 127px;
+}
+
+.ExpandedSideBar {
+    width: 288px;
+}
+
+#CompassIcon {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  left: 31px;
+  top: 240px;
+}
+
+#RelationshipIcon {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  left: 26px;
+  top: 108px;
+}
+
+#UserIcon {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  left: 27px;
+  top: 362px;
+}
+
+#UserIcon:hover {
+
+  width: 80px;
+  height: 80px;
+}
+
+#CompassIcon:hover {
+  width: 70px;
+  height: 70px;
+}
+
+#RelationshipIcon:hover {
+  width: 80px;
+  height: 80px;
+}
