@@ -3,6 +3,7 @@ import "./LandingPage.css";
 import 'antd/dist/antd.css';
 import eighthNote from '../../assets/eighth-note.png';
 import doubleEighthNote from '../../assets/double-eighth-note.png';
+import logo from '../../assets/prelude-logo.png';
 
 // import firebase from 'firebase/app';
 // import 'firebase/functions';
@@ -26,7 +27,7 @@ class LandingPage extends Component {
 
     return (
             <div className="App">
-              <div id="logo">logo</div>
+              <img alt="prelude logo" src={logo} id="logo" />
               <p id="left">
                 <h1>prelude</h1>
                 <p id="tagline">the beginning of your next chapter</p>
@@ -71,9 +72,9 @@ class LoggedIn extends Component {
 
   render() {
     return (
-      <>
-      {/* <Modal title="Basic Modal" visible={true} onOk */}
-      </>
+      <div>
+      Loading, please wait...
+      </div>
       //<LandingPage />
     );
   }
