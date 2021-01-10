@@ -1,0 +1,37 @@
+.App {
+    /* background-image: */
+}
+
+body {
+    background-color: #D3FFF3;
+    
+}
+
+#logo {
+    position:absolute;
+    left: 22px;
+    top: 17px;
+    width: 259px;
+    height: 124px;
+    border: 10px solid black;
+}
+
+h1 {
+   font-weight:bold;
+   font-size: 75px; 
+}
+
+#left {
+    position: absolute;
+    width: 447px;
+    left: 131px;
+    top: 207px;
+    border: 0px solid #73AD21;
+    text-align: left;
+}
+
+.buttons {
+    font-size: 27px;
+    text-align: center;
+    font-family: Poppins;
+}
