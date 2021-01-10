@@ -29,21 +29,16 @@ class LandingPage extends Component {
 
 
     return (
-
-          <div className="App">
-            {//<img id="logo" alt="prelude logo" src={logo} />
-            }
-            <div id="logo">placeholder logo</div>
-            <p id="left">
-              <h1>prelude</h1>
-              <p id="tagLine"><b>the beginning of your next chapter</b></p>
-              <p id="intro">let the music help you find your forever dance partner</p>
-            </p>
-            <div id="buttons">
-              <Button id="button" disabled>sign up</Button>
-              <Button onClick={this.signin}>sign in</Button>
+            <div className="App">
+              <div id="logo">placeholder logo</div>
+              <p id="left">
+                <h1>prelude</h1>
+                <p id="tagLine"><b>the beginning of your next chapter</b></p>
+                <p id="intro">let the music help you find your forever dance partner</p>
+              </p>
+              <button onClick={this.signin}>sign in</button>
             </div>
-          </div>
+       
 
     );
   }
@@ -64,7 +59,9 @@ class LoggedIn extends Component {
   
   render() {
     return (
-      <LandingPage />
+      <>
+      </>
+      //<LandingPage />
     );
   }
 }

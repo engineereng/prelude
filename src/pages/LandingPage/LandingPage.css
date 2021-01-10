@@ -1,11 +1,7 @@
 .App {
-    /* background-image: */
+    /* background-color: #D3FFF3; */
 }
 
-body {
-    background-color: #D3FFF3;
-    
-}
 
 #logo {
     position:absolute;
@@ -14,11 +10,14 @@ body {
     width: 259px;
     height: 124px;
     border: 10px solid black;
+    
 }
+
 
 h1 {
    font-weight:bold;
-   font-size: 75px; 
+   font-size: 75px;
+   
 }
 
 #left {
@@ -28,10 +27,18 @@ h1 {
     top: 207px;
     border: 0px solid #73AD21;
     text-align: left;
+    
 }
 
-.buttons {
+button {
     font-size: 27px;
     text-align: center;
-    font-family: Poppins;
+    /* font-family: Poppins; */
+    left: 898px;
+    top: 300px;
+    
+}
+
+body {
+    background-color: #D3FFF3;
 }
