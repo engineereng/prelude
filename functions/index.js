@@ -2,6 +2,8 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
+admin.initializeApp();
+
 // Obtains Spotify Access Token using either refresh token or authorization code
 // data should contain refresh_token or authorization_code
 exports.obtainSpotifyToken = functions.https.onCall((data, context) => {
@@ -13,11 +15,12 @@ exports.obtainSpotifyToken = functions.https.onCall((data, context) => {
     var http = new XMLHttpRequest();
     var url = 'https://accounts.spotify.com/api/token';
     var body = 'grant_type=authorization_code&code='+data.authorization_code+'&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Floggedin'
+    console.log(body);
     http.open('POST', url, false);
     http.setRequestHeader('Authorization', 'Basic '+base_64_header)
     http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     http.send(body);
-    if(http.status === 200) {
+    if(http.status >= 200 && http.status < 300) {
       return(JSON.parse(http.responseText));
     } else {
       throw new functions.https.HttpsError('failed-return', 'Function returned with status ' + http.status);
@@ -32,7 +35,7 @@ exports.obtainSpotifyToken = functions.https.onCall((data, context) => {
     http2.setRequestHeader('Authorization', 'Basic '+base_64_header);
     http2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     http2.send(body2);
-    if(http2.status === 200) {
+    if(http2.status >= 200 && http2.status < 300) {
       return(JSON.parse(http2.responseText));
     } else {
       throw new functions.https.HttpsError('failed-return', 'Function returned with status ' + http.status);
@@ -45,16 +48,18 @@ exports.obtainSpotifyToken = functions.https.onCall((data, context) => {
 // Takes user's info using auth token and generates user profile based on top tracks
 // Requires Access Token (access_token) and Spotify user_id to be passed through
 exports.generateProfileMetrics = functions.https.onCall((data, context) => {
+  const number_tracks = 50;
+
   if(data.access_token && data.user_id) {
     var http = new XMLHttpRequest();
     var url = 'https://api.spotify.com/v1/me/top/tracks';
-    var body = '?limit=50&time_range=long_term';
+    var body = '?limit='+number_tracks.toString()+'&time_range=long_term';
     http.open('GET', url+body);
     http.setRequestHeader('Authorization', 'Bearer ' + data.access_token);
     http.send();
 
     http.addEventListener('load', function() {
-      if(this.status === 200) {
+      if(this.status >= 200 && this.status < 300) {
         console.log('Creating profile metrics...');
         var results = JSON.parse(this.responseText).items;
 
@@ -69,11 +74,10 @@ exports.generateProfileMetrics = functions.https.onCall((data, context) => {
           loudness: 0,
           speechiness: 0,
           tempo: 0,
-          valence: 0,
-          year: 0
+          valence: 0
         };
 
-        var sum_metrics = results.map((track) => {
+        var compile_tracks = results.map((track) => {
           top_tracks.push(track.id);
           track.artists.forEach(artist => {
             if(!top_artists.includes(artist.id)) {
@@ -81,31 +85,41 @@ exports.generateProfileMetrics = functions.https.onCall((data, context) => {
             }
           });
 
-          // TODO: Check if this works or if we need to convert to sync XMLHttpRequest
-          admin.firebase.firestore().collection('spotify-songs').doc(track.id).get().then((doc) => {
-            console.log(doc);
-            metric_sums.acousticness += parseFloat(doc.acousticness);
-            metric_sums.danceability += parseFloat(doc.danceability);
-            metric_sums.energy += parseFloat(doc.energy);
-            metric_sums.instrumentalness += parseFloat(doc.instrumentalness);
-            metric_sums.liveness += parseFloat(doc.liveness);
-            metric_sums.loudness += parseFloat(doc.loudness);
-            metric_sums.speechiness += parseFloat(doc.speechiness);
-            metric_sums.tempo += parseFloat(doc.tempo);
-            metric_sums.valence += parseFloat(doc.valence);
-            metric_sums.year += parseFloat(doc.year);
-
-            return true;
-          }).catch((err) => {console.log(err)});
-
           return true;
         });
 
-        Promise.all(sum_metrics).then(() => {
-          console.log(metric_sums);
+        Promise.all(compile_tracks).then(() => {
+          var http2 = new XMLHttpRequest();
+          var url = 'https://api.spotify.com/v1/audio-features';
+          var body = '?ids='+top_tracks.join('%2C');
+          http2.open('GET', url+body, false);
+          http2.setRequestHeader('Authorization', 'Bearer ' + data.access_token);
+          http2.send();
+          if(http2.status >= 200 && http2.status < 300) {
+            var metrics = JSON.parse(http2.responseText).audio_features;
 
+            var sum_metrics = metrics.map((metric) => {
+              metric_sums.acousticness += parseFloat(metric.acousticness);
+              metric_sums.danceability += parseFloat(metric.danceability);
+              metric_sums.energy += parseFloat(metric.energy);
+              metric_sums.instrumentalness += parseFloat(metric.instrumentalness);
+              metric_sums.liveness += parseFloat(metric.liveness);
+              metric_sums.loudness += parseFloat(metric.loudness);
+              metric_sums.speechiness += parseFloat(metric.speechiness);
+              metric_sums.tempo += parseFloat(metric.tempo);
+              metric_sums.valence += parseFloat(metric.valence);
+
+              return true;
+            });
+
+            return Promise.all(sum_metrics);
+          } else {
+            console.log(this.status);
+            throw new functions.https.HttpsError('failed-return', 'Function returned with status ' + this.status);
+          }
+        }).then(() => {
           var avg_metrics = Object.keys(metric_sums).map((key, idx) => {
-            metric_sums[idx] = parseFloat(metric_sums[idx])/parseFloat(top_tracks.length);
+            metric_sums[key] = parseFloat(metric_sums[key])/parseFloat(top_tracks.length);
             return true;
           });
 
@@ -113,11 +127,8 @@ exports.generateProfileMetrics = functions.https.onCall((data, context) => {
         }).then(() => {
           metric_sums.top_tracks = top_tracks;
           metric_sums.top_artists = top_artists;
-          admin.firebase.firestore().collection('users').doc(data.user_id).update(metric_sums);
-          return true;
-        }).catch((err) => {console.log(err)});
-
-
+          return admin.firestore().collection('users').doc(data.user_id.toString()).update(metric_sums);
+        }).catch(err => {console.log(err)})
       } else {
         console.log(this.status);
         throw new functions.https.HttpsError('failed-return', 'Function returned with status ' + this.status);
