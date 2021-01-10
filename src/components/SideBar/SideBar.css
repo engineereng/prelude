@@ -1,0 +1,140 @@
+@font-face {
+  font-family: Poppins;
+  src: url("../../fonts/Poppins-Regular.ttf");
+}
+
+.Separator {
+  position: absolute;
+  width: 134px;
+  height: 3px;
+  left: -4px;
+  top: 74px;
+  background: rgba(109, 46, 70, 1);
+  opacity: 0.2;
+}
+
+.SideBar,
+.ExpandedSideBar {
+  position: absolute;
+
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+}
+
+.SideBar {
+  width: 127px;
+}
+
+.ExpandedSideBar {
+  width: 288px;
+}
+
+#Logo {
+  position: absolute;
+  width: 268px;
+  height: 57px;
+  left: 10px;
+  top: 8px;
+
+  background: #c4c4c4;
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 30px;
+  /* display: flex; */
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  color: #000000;
+}
+
+#Matches,
+#Explore,
+#Profile,
+#SignOut {
+  position: absolute;
+  width: 216px;
+  height: 55px;
+  background: rgba(247, 23, 53, 0.72);
+  border-radius: 20px;
+  left: 36px;
+  color: #ffffff;
+  font-family: Poppins;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#Matches {
+  top: 119px;
+}
+
+#Explore {
+  top: 225px;
+}
+
+#Profile {
+  top: 348px;
+}
+
+#SignOut {
+  top: 742px;
+}
+
+#Ellipse {
+  position: absolute;
+  width: 61px;
+  height: 61px;
+  left: 119px;
+  top: 815px;
+  background: #ffffff;
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+}
+
+#Vector {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  align-items: center;
+  /* background: #000000; */
+}
+
+#CompassIcon {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  left: 31px;
+  top: 240px;
+}
+
+#RelationshipIcon {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  left: 26px;
+  top: 108px;
+}
+
+#UserIcon {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  left: 27px;
+  top: 362px;
+}
+
+#UserIcon:hover {
+  width: 80px;
+  height: 80px;
+}
+
+#CompassIcon:hover {
+  width: 70px;
+  height: 70px;
+}
+
+#RelationshipIcon:hover {
+  width: 80px;
+  height: 80px;
+}
