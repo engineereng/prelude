@@ -5,6 +5,7 @@ import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/analytics';
+import 'firebase/functions';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAMtcfzOanNakfh0O6h1vUkmM8c6g9-v4s",
@@ -23,13 +24,12 @@ if (!firebase.apps.length) {
 
 let db = firebase.firestore();
 let functions = firebase.functions();
-console.log(functions);
-console.log(db);
 
 // Deal with emulators
 if (window.location.hostname === 'localhost') {
   console.log('Localhost detected, using emulators...')
   firebase.firestore().useEmulator("localhost", 8080);
+  firebase.functions().useEmulator("localhost", 5001);
 }
 
 function App() {
