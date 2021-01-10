@@ -56,24 +56,24 @@
 }
 
 #name {
-  /* padding-top: 68px; */
-  /* display: inline-block; */
+  /* margin-top: 68px; */
+  display: inline-block;
   float: left;
-  /* text-align: right; */
+  text-align: right;
 }
 
-#age {
+/* #age {
   padding-top: 24px;
 }
 
 #location {
   padding-top: 26px;
-}
+} */
 
 #sexual-orientation {
   font-size: 20px;
-  padding-top: 9px;
-}
+  /* padding-top: 9px; */
+} 
 
 .line {
   width: 279px;
@@ -82,16 +82,25 @@
   border-top: transparent;
   border-left: transparent;
   border-right: transparent;
-  margin-left: 129px;
+  /* margin-left: 129px; */
   /* margin-top: -90px; */
 }
 
-/* #name-line {
-  
-  padding-top: 98px;
+#name-line {
+  margin-left: 39px;
+
 }
 
 #age-line {
-  margin-left: 129px;
-  padding-top: 98px;
-} */
+  margin-left: 66px;
+
+}
+
+#location-line {
+  margin-left: 9px;
+
+}
+
+#sexual-orientation-line {
+  margin-left: 10px;
+}

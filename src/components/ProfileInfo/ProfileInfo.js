@@ -6,26 +6,33 @@ const profileInfo = () => {
     <div id="ProfileInfoPanel">
       <div id="ProfilePhoto" />
       <div className="text">
-        <div>
+        <div style={{ marginTop: "68px" }}>
           <label id="name">name</label>
-          <span>
-            <input type="text" className="line" />
-          </span>
+
+          <input type="text" className="line" id="name-line" />
         </div>
-        <div>
-          <div id="age">age</div>
-          {/* <div className="line" /> */}
+        <div style={{ marginTop: "24px" }}>
+          <label id="age">age</label>
+          <input type="text" className="line" id="age-line" />
         </div>
-        <div id="location">location</div>
-        <div id="sexual-orientation">
-          sexual <br />
+        <div style={{ marginTop: "26px" }}>
+          <label id="location">location</label>
+          <input type="text" className="line" id="location-line" />
+        </div>
+        <label id="sexual-orientation">
+          sexual<br/>
           orientation
-        </div>
+        </label>
+        <input type="text" className="line" id="sexual-orientation-line" />
       </div>
-      <div style={{paddingLeft: '34px', paddingTop: "42px"}}>
-        <button id="confirm" className="button-text">confirm</button>
-   
-        <button id="cancel" className="button-text">cancel</button>
+      <div style={{ paddingLeft: "34px", paddingTop: "20px" }}>
+        <button id="confirm" className="button-text">
+          confirm
+        </button>
+
+        <button id="cancel" className="button-text">
+          cancel
+        </button>
       </div>
     </div>
   );
