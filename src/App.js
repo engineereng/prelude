@@ -22,6 +22,8 @@ if (!firebase.apps.length) {
 };
 
 let db = firebase.firestore();
+let functions = firebase.functions();
+console.log(functions);
 console.log(db);
 
 // Deal with emulators
