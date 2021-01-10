@@ -62,8 +62,7 @@ class LoggedIn extends Component {
     var something = this.props.functions.httpsCallable("obtainSpotifyToken");
     something({authorization_code: this.props.code})
         //.then(res => {console.log(res)});
-        .then(res=>{this.props.datafunc(res);
-          console.log(res);
+        .then(res=>{
           window.location.assign('http://localhost:3000/index?code=' + res.data.access_token)});
   }
 
