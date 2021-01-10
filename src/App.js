@@ -1,11 +1,16 @@
 import './App.css';
-
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/analytics';
-import LandingPage from './pages/LandingPage/LandingPage';
 import 'firebase/functions';
+import {LandingPage, LoggedIn} from './pages/LandingPage/LandingPage';
+
+import  {
+ // BrowserRouter as Router,
+  Route,
+  useLocation
+} from 'react-router-dom';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAMtcfzOanNakfh0O6h1vUkmM8c6g9-v4s",
@@ -22,9 +27,13 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 };
 
-let db = firebase.firestore();
+//let db = firebase.firestore();
 let functions = firebase.functions();
 
+//console.log("About to call function");
+functions.httpsCallable("obtainSpotifyToken");
+
+//console.log("function called");
 // Deal with emulators
 if (window.location.hostname === 'localhost') {
   console.log('Localhost detected, using emulators...')
@@ -32,10 +41,24 @@ if (window.location.hostname === 'localhost') {
   firebase.functions().useEmulator("localhost", 5001);
 }
 
+function useQuery() {
+  console.log(useLocation().pathname);
+  return new URLSearchParams(useLocation().search);
+}
+
 function App() {
+  let query = useQuery();
+
   return (
-    <LandingPage />
+    <>
+      <Route path="/" component= {LandingPage} />
+      <Route path="/loggedin">
+        <LoggedIn code={query.get("code")} functions={functions}/>
+      </Route>
+    </>
   );
 }
+
+
 
 export default App;
