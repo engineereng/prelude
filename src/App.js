@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/analytics';
 import LandingPage from './pages/LandingPage/LandingPage';
+import 'firebase/functions';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAMtcfzOanNakfh0O6h1vUkmM8c6g9-v4s",
@@ -22,12 +23,13 @@ if (!firebase.apps.length) {
 };
 
 let db = firebase.firestore();
-console.log(db);
+let functions = firebase.functions();
 
 // Deal with emulators
 if (window.location.hostname === 'localhost') {
   console.log('Localhost detected, using emulators...')
   firebase.firestore().useEmulator("localhost", 8080);
+  firebase.functions().useEmulator("localhost", 5001);
 }
 
 function App() {
