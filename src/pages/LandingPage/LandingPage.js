@@ -19,6 +19,7 @@ class LandingPage extends Component {
     window.location.assign('https://accounts.spotify.com/authorize'+'?client_id=' + clientId + "&"
      + 'response_type=code' + '&'
      + 'redirect_uri=' + uri + '&'
+     + 'show_dialog=true&'
      + 'scope=' + "user-top-read");
   }
 

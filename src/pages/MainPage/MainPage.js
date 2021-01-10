@@ -8,8 +8,15 @@ class MainPage extends Component {
     super(props);
     this.state = {
       picture_url: null,
-      display_name: null
+      display_name: null,
+      status: 'login_page'
     }
+
+    this.updateState = this.updateState.bind(this);
+  }
+
+  updateState(state) {
+    this.setState({status: state});
   }
 
   componentDidMount() {
@@ -21,12 +28,21 @@ class MainPage extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <ProfileInfo picture_url = {this.state.picture_url} display_name = {this.state.display_name} />
-        <SideBar />
-      </div>
-    );
+    if(this.state.status === 'display_info'){
+      return(
+        <div>
+          <ProfileInfo picture_url = {this.state.picture_url} display_name = {this.state.display_name} updateState={this.updateState} />
+          <SideBar />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <ProfileInfo picture_url = {this.state.picture_url} display_name = {this.state.display_name} updateState={this.updateState} />
+          <SideBar />
+        </div>
+      );
+    }
   }
 }
 
